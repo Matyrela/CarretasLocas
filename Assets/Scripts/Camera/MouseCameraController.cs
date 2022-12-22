@@ -3,28 +3,60 @@ using System.Collections;
 
 public class MouseCameraController : MonoBehaviour
 {
-    [SerializeField] Vector3 hit_position = Vector3.zero;
-    [SerializeField] Vector3 current_position = Vector3.zero;
-    [SerializeField] Vector3 camera_position = Vector3.zero;
+    [Header("Mapa objeto")]
+    [SerializeField] private GameObject Mapa;
+    Vector2[] vertices;
 
-    public float MaxY = 18;
-    public float MinY = -18;
+    public float boundX;
+    public float boundY;
 
-    public float MaxX = 14;
-    public float MinX = -14;
+    [Header("Bordes del mapa")]
+    [SerializeField] private float MaxY;
+    [SerializeField] private float MinY;
+    [SerializeField] private float MaxX;
+    [SerializeField] private float MinX;
 
-    [SerializeField] bool canScroll;
+    [Header("Movimiento del mouse")]
+    Vector3 hit_position = Vector3.zero;
+    Vector3 current_position = Vector3.zero;
+    Vector3 camera_position = Vector3.zero;
+
+
+    //https://media.discordapp.net/attachments/699277437439311962/1052420002332033104/image.png
+    
+    
+
+    private void Start()
+    {
+        boundX = this.GetComponent<Camera>().orthographicSize * Screen.width / Screen.height;
+        boundY = this.GetComponent<Camera>().orthographicSize;
+
+        vertices = Mapa.GetComponent<SpriteRenderer>().sprite.vertices;
+        MaxY = vertices[0].y - boundY;
+        MinY = vertices[1].y + boundY;
+        
+        MaxX = vertices[1].x - boundX;
+        MinX = vertices[0].x + boundX;
+
+        
+
+    }
 
     void Update()
     {
+        Debug.DrawLine(new Vector2(MinX, MaxY), new Vector2(MaxX, MaxY));
+        Debug.DrawLine(new Vector2(MaxX, MinY), new Vector2(MinX, MinY));
+
+        Debug.DrawLine(new Vector2(MinX, MaxY), new Vector2(MinX, MinY));
+        Debug.DrawLine(new Vector2(MaxX, MinY), new Vector2(MaxX, MaxY));
+
         if (Input.GetMouseButtonDown(0))
         {
-            canScroll = true;
             hit_position = Input.mousePosition;
             camera_position = transform.position;
 
         }
-        if (Input.GetMouseButton(0) && canScroll)
+        if (Input.GetMouseButton(0))
         {
             current_position = Input.mousePosition;
             if (this.transform.position.y < MaxY && this.transform.position.y > MinY && this.transform.position.x > MinX && this.transform.position.x < MaxX)
