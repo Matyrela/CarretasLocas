@@ -3,6 +3,8 @@ using System.Collections;
 
 public class MouseCameraController : MonoBehaviour
 {
+    private Camera cam;
+
     [Header("Mapa objeto")]
     [SerializeField] private GameObject Mapa;
     Vector2[] vertices;
@@ -16,39 +18,69 @@ public class MouseCameraController : MonoBehaviour
     [SerializeField] private float MaxX;
     [SerializeField] private float MinX;
 
+    [Header("Ajuste de camara")]
+    [SerializeField] private float mouseSpeed;
+    [SerializeField] private float minZoom;
+    [SerializeField] private float maxZoom;
+
     [Header("Movimiento del mouse")]
     Vector3 hit_position = Vector3.zero;
     Vector3 current_position = Vector3.zero;
     Vector3 camera_position = Vector3.zero;
+    
 
 
     //https://media.discordapp.net/attachments/699277437439311962/1052420002332033104/image.png
-    
-    
 
     private void Start()
     {
+        getBounds();
+        cam = this.GetComponent<Camera>();
+    }
+
+    private void getBounds()
+    {
         boundX = this.GetComponent<Camera>().orthographicSize * Screen.width / Screen.height;
         boundY = this.GetComponent<Camera>().orthographicSize;
-
         vertices = Mapa.GetComponent<SpriteRenderer>().sprite.vertices;
         MaxY = vertices[0].y - boundY;
         MinY = vertices[1].y + boundY;
-        
         MaxX = vertices[1].x - boundX;
         MinX = vertices[0].x + boundX;
-
-        
-
     }
 
     void Update()
     {
         Debug.DrawLine(new Vector2(MinX, MaxY), new Vector2(MaxX, MaxY));
         Debug.DrawLine(new Vector2(MaxX, MinY), new Vector2(MinX, MinY));
-
         Debug.DrawLine(new Vector2(MinX, MaxY), new Vector2(MinX, MinY));
         Debug.DrawLine(new Vector2(MaxX, MinY), new Vector2(MaxX, MaxY));
+
+        var wheelValue = Input.GetAxis("Mouse ScrollWheel");
+        if (wheelValue > 0)
+        {
+            if (!(cam.orthographicSize >= maxZoom))
+            {
+                cam.orthographicSize = cam.orthographicSize + mouseSpeed;
+                if (cam.orthographicSize >= maxZoom)
+                {
+                    cam.orthographicSize = maxZoom;
+                }
+                getBounds();
+            }
+        }
+        else if(wheelValue < 0)
+        {
+            if(!(cam.orthographicSize <= minZoom))
+            {
+                cam.orthographicSize = cam.orthographicSize - mouseSpeed;
+                if (cam.orthographicSize <= minZoom)
+                {
+                    cam.orthographicSize = minZoom;
+                }
+                getBounds();
+            }
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -75,7 +107,6 @@ public class MouseCameraController : MonoBehaviour
             {
                 this.transform.position = new Vector3(this.transform.position.x, MinY + 0.1f, -10);
             }
-            
         }
 
         if (this.transform.position.x > MaxX || this.transform.position.x < MinX)
@@ -88,20 +119,15 @@ public class MouseCameraController : MonoBehaviour
             {
                 this.transform.position = new Vector3(MinX + 0.1f, this.transform.position.y, -10);
             }
-
         }
     }
 
     void LeftMouseDrag()
     {
         current_position.z = hit_position.z = camera_position.y;
-
         Vector3 direction = Camera.main.ScreenToWorldPoint(current_position) - Camera.main.ScreenToWorldPoint(hit_position);
-
         direction = direction * -1;
-
         Vector3 position = camera_position + direction;
-
         transform.position = position;
     }
 }
