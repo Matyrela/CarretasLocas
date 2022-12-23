@@ -220,10 +220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae4e377136485240b153a197210ab60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera1: {fileID: 519420028}
-  camera2: {fileID: 0}
-  Click: 0
-  resetTimer: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,6 +325,7 @@ MonoBehaviour:
   MinY: 0
   MaxX: 0
   MinX: 0
+  mouseSpeed: 0.5
   minZoom: 5
   maxZoom: 25.30001
 --- !u!114 &519420034
