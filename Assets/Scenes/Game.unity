@@ -327,7 +327,10 @@ MonoBehaviour:
   MinX: 0
   mouseSpeed: 0.5
   minZoom: 5
-  maxZoom: 25.30001
+  maxZoom: 24.30001
+  hit_position: {x: 0, y: 0, z: 0}
+  current_position: {x: 0, y: 0, z: 0}
+  camera_position: {x: 0, y: 0, z: 0}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -24,9 +24,9 @@ public class MouseCameraController : MonoBehaviour
     [SerializeField] private float maxZoom;
 
     [Header("Movimiento del mouse")]
-    Vector3 hit_position = Vector3.zero;
-    Vector3 current_position = Vector3.zero;
-    Vector3 camera_position = Vector3.zero;
+    [SerializeField] Vector3 hit_position = Vector3.zero;
+    [SerializeField] Vector3 current_position = Vector3.zero;
+    [SerializeField] Vector3 camera_position = Vector3.zero;
     
 
 
@@ -51,13 +51,18 @@ public class MouseCameraController : MonoBehaviour
 
     void Update()
     {
+        Debug.DrawLine(new Vector2(MinX - boundX, MaxY + boundY), new Vector2(MaxX + boundX, MaxY + boundY), Color.red);
+        Debug.DrawLine(new Vector2(MaxX + boundX, MinY - boundY), new Vector2(MinX - boundX, MinY - boundY), Color.red);
+        Debug.DrawLine(new Vector2(MinX - boundX, MaxY + boundY), new Vector2(MinX - boundX, MinY - boundY), Color.red);
+        Debug.DrawLine(new Vector2(MaxX + boundX, MinY - boundY), new Vector2(MaxX + boundX, MaxY + boundY), Color.red);
+
         Debug.DrawLine(new Vector2(MinX, MaxY), new Vector2(MaxX, MaxY));
         Debug.DrawLine(new Vector2(MaxX, MinY), new Vector2(MinX, MinY));
         Debug.DrawLine(new Vector2(MinX, MaxY), new Vector2(MinX, MinY));
         Debug.DrawLine(new Vector2(MaxX, MinY), new Vector2(MaxX, MaxY));
 
         var wheelValue = Input.GetAxis("Mouse ScrollWheel");
-        if (wheelValue > 0)
+        if (wheelValue < 0)
         {
             if (!(cam.orthographicSize >= maxZoom))
             {
@@ -69,7 +74,7 @@ public class MouseCameraController : MonoBehaviour
                 getBounds();
             }
         }
-        else if(wheelValue < 0)
+        else if(wheelValue > 0)
         {
             if(!(cam.orthographicSize <= minZoom))
             {
@@ -96,6 +101,8 @@ public class MouseCameraController : MonoBehaviour
                 LeftMouseDrag();
             }
         }
+
+        //-------------------------------------------------------------------------
 
         if (this.transform.position.y > MaxY || this.transform.position.y < MinY)
         {
