@@ -340,6 +340,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &317753274
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,6 +418,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317753274}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> 94a11d1848d3f8a51e1e6b8777bfe62a93c0508c
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,6 +528,12 @@ MonoBehaviour:
   mouseSpeed: 0.5
   minZoom: 5
   maxZoom: 24.30001
+<<<<<<< HEAD
+=======
+  hit_position: {x: 0, y: 0, z: 0}
+  current_position: {x: 0, y: 0, z: 0}
+  camera_position: {x: 0, y: 0, z: 0}
+>>>>>>> 94a11d1848d3f8a51e1e6b8777bfe62a93c0508c
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
