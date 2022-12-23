@@ -32,8 +32,8 @@ public class CameraController : MonoBehaviour
         }
         else if (DoubleClick() == true && cameraActive == false)
         {
-            camera1.SetActive(false);
-            camera2.SetActive(true);
+            camera1.SetActive(true);
+            camera2.SetActive(false);
             cameraActive = true;
 
         }
@@ -46,7 +46,7 @@ public class CameraController : MonoBehaviour
     }
     public bool DoubleClick()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonUp(0))
         {
             StartCoroutine ("ResetClickTimes");
             Click++;
