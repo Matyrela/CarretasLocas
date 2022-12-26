@@ -5,17 +5,30 @@ using UnityEngine;
 public class ButtonCommands : MonoBehaviour
 {
     [SerializeField]
-	private GameObject panel;
+	private GameObject panel1;
+	[SerializeField]
+	private GameObject panel2;
+
 	private void Start()
 	{
-		panel.SetActive(false);
+		panel1.SetActive(false);
+		panel2.SetActive(false);
 	}
 	public void ActivatePanel()
     {
-		panel.SetActive(true);
+		panel1.SetActive(true);
 	}
 	public void DesactivatePanel()
 	{
-		panel.SetActive(false);
+		panel1.SetActive(false);
+	}
+	public void ActivateConfirmationPanel()
+    {
+		panel2.SetActive(true);
+	}
+	public void DesactivateAllPanel()
+	{
+		panel1.SetActive(false);
+		panel2.SetActive(false);
 	}
 }
