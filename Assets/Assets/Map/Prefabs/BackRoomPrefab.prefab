@@ -2159,6 +2159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openSide: 2
+  spawn: 0
 --- !u!50 &3220593736027290249
 Rigidbody2D:
   serializedVersion: 4
@@ -2169,7 +2170,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 4635053463519176282}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0

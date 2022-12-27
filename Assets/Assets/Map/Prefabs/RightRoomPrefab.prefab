@@ -2820,6 +2820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openSide: 3
+  spawn: 0
 --- !u!61 &8066440554802606886
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2856,7 +2857,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 6249419948475604130}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
