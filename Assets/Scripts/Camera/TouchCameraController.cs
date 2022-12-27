@@ -5,7 +5,6 @@ using UnityEngine;
 public class TouchCameraController : MonoBehaviour
 {
     private Vector2 worldStartPoint;
-
     void Update()
     {
 
