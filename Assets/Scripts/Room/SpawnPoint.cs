@@ -17,6 +17,13 @@ public class SpawnPoint : MonoBehaviour
     }
     private void Spawn()
     {
+        //Tipos de sala que tienen una conexion hacia:
+
+        // 1 - ABAJO 
+        // 2 - ARRIBA
+        // 3 - IZQUIERDA
+        // 4 - DERECHA
+
         if (!spawned)
         {
             if (openSide == 1)
