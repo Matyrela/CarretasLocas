@@ -8,7 +8,7 @@ public class SpawnPoint : MonoBehaviour
     private RoomTemplate templates;
     private int random;
     public bool spawned;
-    private Vector3 centralRoomError; //por alguna razón el prefab de la central room es la unica que su transform 0,0 aparece corrida 3 unidades a la izquierda 
+
     void Start()
     {
         spawned = false;
@@ -51,7 +51,7 @@ public class SpawnPoint : MonoBehaviour
     {
         if (other.CompareTag("SpawnPoint"))
         {
-            Destroy(gameObject);
+            Destroy(other.gameObject);
         }
     }
 }

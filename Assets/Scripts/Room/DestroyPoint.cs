@@ -6,6 +6,9 @@ public class DestroyPoint : MonoBehaviour
 {
     public void OnTriggerEnter2D(Collider2D other)
     {
-        Destroy(other.gameObject);
+        if (other.CompareTag("SpawnPoint"))
+        {
+            Destroy(other.gameObject);
+        }
     }
 }
